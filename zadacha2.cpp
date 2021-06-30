@@ -22,5 +22,5 @@ int main()
     int imas[10];
     int size = 6;
     int val = 5;
-    initMas(imas, size, val);
+    initMas(imas, size, val)
 }
