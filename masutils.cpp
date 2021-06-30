@@ -126,20 +126,29 @@ int testCopyMas() {
 //Вариант 3:
 //Написать функцию сравнение size элементов массивов  source и dest. Если массивы равны 0, если не равны -1
 
-int testCompareMas() {
-  int source[] = {0,1,2,3,4,5,6,7,8,9}; 
-  int dest[] = {0,1,2,3,4,5,6,7};
+void initMas(int* imas, int size, int val)
+{
+    for (int i = 0; i < size; i++)
+        imas[i] = val;
+}
 
-  if (compareMas(source,dest,8) != 0)
-    return -1;
-    
-  int source1[] = {0,1,2,3,4,5,6,7,8,9}; 
-  int dest1[] = {1,1,2,3,4,5,6,7};
 
-  if (compareMas(source1,dest1,8) != -1)
-    return -1;
+void test(int* imas, int size)
+{
+    initMas(imas, size, 1);
+    for (int i = 0; i < size; i++)
+        if (imas[i] != 1)  cout << "error";
 
-  return 0;
+    initMas(imas, size, -13);
+    for (int i = 0; i < size; i++)
+        if (imas[i] != -13) cout << "error";
+}
+int main()
+{
+    int imas[10];
+    int size = 6;
+    int val = 5;
+    initMas(imas, size, val);
 }
 
 //Вариант 4:
