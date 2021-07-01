@@ -1,44 +1,74 @@
 #include <iostream>
-#include <forward_list>
-#include <cstdlib>      
 
- 
 using namespace std;
- 
-void printStack(stack<char>);
- 
+
+struct Node {
+    int val;
+    Node* next;
+};
+
+void initNode(Node* node)
+{
+    node->val = 0;
+    node->next = nullptr;
+}
+
+void pushNode(Node* head, Node* node)
+{
+    if (head == nullptr || node == nullptr)
+        return;
+    while (head->next != nullptr)
+        head = head->next;
+    head->next = node;
+    node->next = nullptr;
+}
+
+void showList(Node* head)
+{
+    cout << "Show list:\n";
+    while (head != nullptr)
+    {
+        cout << head->val << endl;
+        head = head->next;
+    }
+}
+
+void initList(Node*& head, int size, int val)
+{
+    if (size <= 0) {
+        head = nullptr;
+        return;
+    }
+
+    head = new Node;
+    head->val = val;
+    head->next = nullptr;
+    for (int i = 1; i < size; ++i) {
+        Node* n = new Node;
+        n->val = val;
+        n->next = head->next;
+        head->next = n;
+    }
+}
+
 int main()
 {
-    setlocale(LC_ALL, "rus"); 
- 
-    forward_list<char> fList;  
-    stack<char> stInt;  
-    stack<char> stChar;  
+    Node *h1, *h2, *h3;
+    initList(h1, 0, 2);
+    showList(h1);
+    initList(h2, 1, 3);
+    showList(h2);
+    initList(h3, 5, 7);
+    showList(h3);
+
+    Node* n = new Node();
+    initNode(n);
     
-    char findSymbol;
-    size_t index = 0;
- 
-    while (true)
-    {
-        char symbol;
-        char ch;
-        system("cls");  
-        cout << "Добавить элемент в список? (1 - да, другой сивол - нет)" << endl;
-        cin >> ch;
-        
-        if (ch == '1')      
-        {
-            cout << "\nВведите символ для вставки в список: ";
-            cin >> symbol;
-            fList.push_front(symbol);  // 
-        }
-        else
-            break;
-        
-        cout << endl;       
-    }
- 
-    for (auto el : fList)
-    {
-        cout << el << ' ';
-    }
+    pushNode(h1, n);
+    showList(h1);
+    pushNode(h2, n);
+    showList(h2);
+    pushNode(h3, n);
+    showList(h3);
+}
+
